@@ -17,6 +17,8 @@ The below instructions setup remote environment in Cloudlab. The goal is to run 
 
 6. Run the following script:
     ```
+    cd ~/lrb
     script/git_pulling.sh > ~/git_pulling.log &
     disown
+
     ```
