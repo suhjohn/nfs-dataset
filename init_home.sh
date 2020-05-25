@@ -3,7 +3,7 @@
 
 USERNAME=$1
 PROJECT_NAME=$(/bin/ls /proj)
-NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces/
+NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces
 NEW_HOME=$NFS_SHARED_HOME_DIR/${USERNAME}
 
 sudo /bin/cp /local/repository/.bashrc $NEW_HOME
