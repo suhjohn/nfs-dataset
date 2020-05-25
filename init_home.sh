@@ -5,7 +5,7 @@ USERNAME=$1
 PROJECT_NAME=$(/bin/ls /proj)
 NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces/
 
-mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/suhjohn
+sudo mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/suhjohn
 
 NEW_HOME=$NFS_SHARED_HOME_DIR/${USERNAME}/suhjohn
 
