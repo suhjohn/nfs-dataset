@@ -11,13 +11,10 @@ sudo /bin/cp /local/repository/init_repo.sh $NFS_SHARED_HOME_DIR/${USERNAME}/
 if [ $(hostname --short) == "nfs" ]
 then
     usermod --move-home --home $NFS_SHARED_HOME_DIR/${USERNAME} ${USERNAME}
+    git clone https://github.com/suhjohn/lrb $NFS_SHARED_HOME_DIR/${USERNAME}/lrb
 else
     usermod --home $NFS_SHARED_HOME_DIR/${USERNAME} ${USERNAME}
 fi
-
-git clone https://github.com/suhjohn/lrb $NFS_SHARED_HOME_DIR/${USERNAME}/lrb
-cd $NFS_SHARED_HOME_DIR/${USERNAME}/lrb
-./setup.sh
 
 # Setup password-less ssh between nodes
 mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/.ssh

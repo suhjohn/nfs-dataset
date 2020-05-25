@@ -63,6 +63,10 @@ nfsServer.addService(pg.Execute(
     shell="sh",
     command="sudo /bin/bash /local/repository/init_home.sh %s" % params.username
 ))
+nfsServer.addService(pg.Execute(
+    shell="sh",
+    command="sudo /bin/bash /local/repository/setup.sh %s" % params.username
+))
 
 # Special node that represents the ISCSI device where the dataset resides
 dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
@@ -89,6 +93,10 @@ for i in range(1, params.clientCount + 1):
     node.addService(pg.Execute(
         shell="sh",
         command="sudo /bin/bash /local/repository/init_home.sh %s" % params.username
+    ))
+    node.addService(pg.Execute(
+        shell="sh",
+        command="sudo /bin/bash /local/repository/setup.sh %s" % params.username
     ))
 
 pc.printRequestRSpec(request)
