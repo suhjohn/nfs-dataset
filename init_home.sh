@@ -6,6 +6,7 @@ PROJECT_NAME=$(/bin/ls /proj)
 NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces
 
 sudo /bin/cp /local/repository/.bashrc $NFS_SHARED_HOME_DIR/${USERNAME}/
+sudo /bin/cp /local/repository/init_repo.sh $NFS_SHARED_HOME_DIR/${USERNAME}/
 
 if [ $(hostname --short) == "nfs" ]
 then
