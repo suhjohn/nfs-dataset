@@ -6,6 +6,7 @@ export PATH=$PATH:/proj/cops-PG0/workspaces/ssuh/lrb/build/bin
 export WEBCACHESIM_TRACE_DIR=/nfs
 export WEBCACHESIM_ROOT=/proj/cops-PG0/workspaces/ssuh/lrb
 export XDG_CONFIG_HOME=/proj/cops-PG0/workspaces/ssuh/XDG_CONFIG
+export DBURI=mongodb+srv://dbUser:<password>@cluster0-jqnk0.mongodb.net/
 
 # If not running interactively, don't do anything
 case $- in

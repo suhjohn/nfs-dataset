@@ -1,7 +1,5 @@
 #!/bin/bash
 
-USERNAME=$1
-
 git clone https://github.com/suhjohn/lrb ~/lrb
 cd ~/lrb
 ./setup.sh
