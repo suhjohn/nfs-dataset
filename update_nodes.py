@@ -29,7 +29,7 @@ yaml_nodes = [
 ]
 
 yaml_data = {
-    "nodes": all_client_nodes
+    "nodes": yaml_nodes
 }
 
 # HACK assumes that lrb exists in root

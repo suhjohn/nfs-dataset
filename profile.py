@@ -91,5 +91,5 @@ for i in range(1, params.clientCount + 1):
         command="sudo /bin/bash /local/repository/init_home.sh %s" % params.username
     ))
 
-nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/cp /local/repository/init_repo ~/"))
+nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/cp /local/repository/init_repo.sg ~/"))
 pc.printRequestRSpec(request)
