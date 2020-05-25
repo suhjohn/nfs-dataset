@@ -3,25 +3,29 @@
 
 USERNAME=$1
 PROJECT_NAME=$(/bin/ls /proj)
-NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces
+NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces/
 
-sudo /bin/cp /local/repository/.bashrc $NFS_SHARED_HOME_DIR/${USERNAME}/
-sudo /bin/cp /local/repository/init_repo.sh $NFS_SHARED_HOME_DIR/${USERNAME}/
+mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/suhjohn
+
+NEW_HOME=$NFS_SHARED_HOME_DIR/${USERNAME}/suhjohn
+
+sudo /bin/cp /local/repository/.bashrc $NEW_HOME
+sudo /bin/cp /local/repository/init_repo.sh NE_HOME
 
 if [ $(hostname --short) == "nfs" ]
 then
-    usermod --move-home --home $NFS_SHARED_HOME_DIR/${USERNAME} ${USERNAME}
+    usermod --move-home --home $NEW_HOME ${USERNAME}
 else
-    usermod --home $NFS_SHARED_HOME_DIR/${USERNAME} ${USERNAME}
+    usermod --home $NEW_HOME ${USERNAME}
 fi
 
 # Setup password-less ssh between nodes
-mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/.ssh
-sudo /bin/cp /local/repository/config $NFS_SHARED_HOME_DIR/${USERNAME}/.ssh/
+mkdir $$NEW_HOME/.ssh
+sudo /bin/cp /local/repository/config $NEW_HOME/.ssh/
 
 if [ $(hostname --short) == "nfs" ]
 then
-  ssh_dir=$NFS_SHARED_HOME_DIR/$USERNAME/.ssh
+  ssh_dir=$NEW_HOME/.ssh
   /usr/bin/geni-get key > $ssh_dir/id_rsa
   chmod 600 $ssh_dir/id_rsa
   chown $USERNAME: $ssh_dir/id_rsa
