@@ -6,8 +6,7 @@ import os
 
 PARALLEL_PER_NODE = 8
 
-username = sys.argv[1]
-
+username = subprocess.check_output("whoami").decode().split()[0]
 manifest_info = subprocess.check_output(["geni-get", "manifest"]).decode()
 all_nodes = set(re.findall(r'clnode[0-9]+.clemson.cloudlab.us', manifest_info))
 nfs_node_hostname = {
