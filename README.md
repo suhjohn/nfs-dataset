@@ -9,7 +9,14 @@ The below instructions setup remote environment in Cloudlab. The goal is to run 
 3. When ssh into nfs node, wait until pwd is `/proj/$PROJECT_NAME/workspaces/$USERNAME` and has finished executing the `init_home.sh` script.
    It takes about 10 minutes on average for this process to finish from the "Started" time on Cloudlab.
 
-4. Run ./init_repo.sh
+4. Run `./init_repo.sh`. At the end of the script(which approximately takes 6 minutes), input your github username and password(or Github authentication key)
+   so that authentication is not required for future purposes.
 
 5. Add `export DBURI='mongodb+srv://dbUser:<password>@cluster0-jqnk0.mongodb.net/'` to the top of .bashrc
    (if appended at bottom, the export does not execute). John has the password.
+
+6. Run the following script:
+    ```
+    script/git_pulling.sh > ~/git_pulling.log &
+    disown
+    ```
