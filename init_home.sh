@@ -17,7 +17,7 @@ else
 fi
 
 # Setup password-less ssh between nodes
-mkdir $$NEW_HOME/.ssh
+mkdir $NEW_HOME/.ssh
 sudo /bin/cp /local/repository/config $NEW_HOME/.ssh/
 
 if [ $(hostname --short) == "nfs" ]
