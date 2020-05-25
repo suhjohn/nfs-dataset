@@ -58,16 +58,12 @@ nfsServer.disk_image = params.osImage
 # Attach server to lan.
 nfsLan.addInterface(nfsServer.addInterface())
 # Initialization script for the server
-# nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/cp /local/repository/.bashrc /users/zhenyus/"))
 nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-server.sh"))
 nfsServer.addService(pg.Execute(
     shell="sh",
     command="sudo /bin/bash /local/repository/init_home.sh %s" % params.username
 ))
-nfsServer.addService(pg.Execute(
-        shell="sh",
-        command="sudo /bin/bash /local/repository/init_repo.sh %s" % params.username
-    ))
+
 # Special node that represents the ISCSI device where the dataset resides
 dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
@@ -94,9 +90,6 @@ for i in range(1, params.clientCount + 1):
         shell="sh",
         command="sudo /bin/bash /local/repository/init_home.sh %s" % params.username
     ))
-    node.addService(pg.Execute(
-        shell="sh",
-        command="sudo /bin/bash /local/repository/init_repo.sh %s" % params.username
-    ))
 
+nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/cp /local/repository/init_repo ~/"))
 pc.printRequestRSpec(request)

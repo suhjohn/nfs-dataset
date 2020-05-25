@@ -5,6 +5,7 @@ USERNAME=$1
 PROJECT_NAME=$(/bin/ls /proj)
 NFS_SHARED_HOME_DIR=/proj/${PROJECT_NAME}/workspaces
 
+sudo /bin/cp /local/repository/.bashrc $NFS_SHARED_HOME_DIR/${USERNAME}/
 
 if [ $(hostname --short) == "nfs" ]
 then
@@ -13,7 +14,14 @@ else
     usermod --home $NFS_SHARED_HOME_DIR/${USERNAME} ${USERNAME}
 fi
 
+git clone https://github.com/suhjohn/lrb $NFS_SHARED_HOME_DIR/${USERNAME}/lrb
+cd $NFS_SHARED_HOME_DIR/${USERNAME}/lrb
+./setup.sh
+
 # Setup password-less ssh between nodes
+mkdir $NFS_SHARED_HOME_DIR/${USERNAME}/.ssh
+sudo /bin/cp /local/repository/config $NFS_SHARED_HOME_DIR/${USERNAME}/.ssh/
+
 if [ $(hostname --short) == "nfs" ]
 then
   ssh_dir=$NFS_SHARED_HOME_DIR/$USERNAME/.ssh
