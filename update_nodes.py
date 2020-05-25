@@ -2,6 +2,7 @@ import re
 import subprocess
 import yaml
 import sys
+import os
 
 PARALLEL_PER_NODE = 8
 
@@ -32,5 +33,6 @@ yaml_data = {
 }
 
 # HACK assumes that lrb exists in root
-with open('~/lrb/config/execution_settings.yaml', 'w') as outfile:
+settings_fp = os.path.expanduser('~/lrb/config/execution_settings.yaml')
+with open(settings_fp, 'w+') as outfile:
     yaml.dump(yaml_data, outfile, default_flow_style=False)
