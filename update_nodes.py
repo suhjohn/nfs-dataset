@@ -22,9 +22,9 @@ all_client_nodes = [
     node for node in all_nodes if nfs_node_hostname not in node
 ]
 
-# transform to "1/ssh -p 22 <username>@clnodexxx.clemson.cloudlab.us"
+# transform to "1/<username>@clnodexxx.clemson.cloudlab.us"
 yaml_nodes = [
-    f"{PARALLEL_PER_NODE}/ssh -p 22 {username}@{node}" for node in all_client_nodes
+    f"{PARALLEL_PER_NODE}/{username}@{node}" for node in all_client_nodes
 ]
 
 yaml_data = {
